@@ -1,0 +1,14 @@
+{
+    "name": "hydrarulz/connectfive",
+    "authors": [
+        {
+            "name": "Daniel Luca",
+            "email": "lucadanielcostin@gmail.com"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        "start": "beefy js/index.js:js/bundle.js --live",
+        "bundle": "browserify js/index.js -o js/bundle.js"
+    },
+}
