@@ -8,7 +8,7 @@
     ],
     "require": {},
     "scripts": {
-        "start": "beefy js/index.js:js/bundle.js --live",
-        "bundle": "browserify js/index.js -o js/bundle.js"
+        "start": "beefy js/app.js:js/bundle.js --live",
+        "bundle": "browserify js/app.js -o js/bundle.js"
     },
 }
