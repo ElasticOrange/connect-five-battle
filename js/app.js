@@ -29,4 +29,4 @@ while(connectfive.finished() === false)
     //sleep(1);
 }
 
-//console.log(connectfive.finished());
+console.log("Winner " + connectfive.finished());
