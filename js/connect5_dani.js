@@ -20,8 +20,13 @@ Gamer.move = function(table, callback){
 };
 
 Gamer.getMove = function(table){
-    var x = prompt("[" + this.marker + "] x=", "");
-    var y = prompt("[" + this.marker + "] y=", "");
+    var x, y;
+
+    do {
+        x = Math.floor(Math.random() * table.length);
+        y = Math.floor(Math.random() * table.length);
+    }
+    while (table[x][y] !== '.');
 
     return [x, y];
 };

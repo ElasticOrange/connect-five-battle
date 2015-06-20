@@ -1,5 +1,5 @@
 var connectfive = require('./connect5framework');
-connectfive.init(5);
+connectfive.init(20);
 connectfive.draw();
 
 var sleep = function(s){

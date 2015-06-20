@@ -3,7 +3,7 @@ var ConnectFive = {
     players: []
 };
 
-var horizontalLine = function(table, coordinates){
+var verticalLine = function(table, coordinates){
     var n = table.length;
     var line = [];
 
@@ -11,15 +11,14 @@ var horizontalLine = function(table, coordinates){
         return line;
     }
 
-    var i;
-    for (i = coordinates[0] ; i < coordinates[0] + 5 ; i++){
+    for (var i = coordinates[0] ; i < coordinates[0] + 5 ; i++){
         line.push(table[i][coordinates[1]]);
     }
 
     return line;
 };
 
-var verticalLine = function(table, coordinates){
+var horizontalLine = function(table, coordinates){
     var n = table.length;
     var line = [];
 
@@ -27,7 +26,7 @@ var verticalLine = function(table, coordinates){
         return line;
     }
 
-    for (var i = coordinates[0] ; i < coordinates[0] + 5 ; i++){
+    for (var i = coordinates[1] ; i < coordinates[1] + 5 ; i++){
         line.push(table[coordinates[0]][i]);
     }
 
@@ -53,24 +52,15 @@ var diagonalLeftLine = function(table, coordinates){
     var n = table.length;
     var line = [];
 
-    console.log(coordinates);
-    return line;
-    /*
-
-    if ((coordinates[0] - 5 < 0) || (coordinates[1] + 5 > n)){
+    if ((coordinates[0] + 5 > n) || (coordinates[1] - 4 < 0)){
         return line;
     }
 
     for (var i = 0 ; i < 5 ; i++){
-        console.log(coordinates[0] - i);
-        console.log(coordinates[1] + i);
-        console.log('---');
-
-        line.push(table[coordinates[0] - i][coordinates[1] + i]);
+        line.push(table[coordinates[0] + i][coordinates[1] - i]);
     }
 
     return line;
-    */
 };
 
 var checkLine = function(line){
@@ -138,23 +128,23 @@ module.exports.init = function(n){
         ConnectFive.table[i] = new Array(n);
     }
 
-    /*
     for(i = 0 ; i < n ; i++)
     {
         for(j = 0 ; j < n ; j++)
         {
-            ConnectFive.table[i][j] = '1';
+            ConnectFive.table[i][j] = '.';
         }
     }
-    */
 
+    /*
     ConnectFive.table = [
         [2,1,1,1,2],
         [2,1,1,2,2],
         [1,1,2,1,1],
         [2,2,1,2,2],
-        [2,1,1,1,2],
+        [1,1,1,1,1],
     ];
+    */
 };
 
 module.exports.draw = function(){
@@ -187,6 +177,8 @@ module.exports.playMove = function(player, coordinates){
 
 module.exports.finished = function(){
     var line, player;
+    var free = false;
+    var table = this.getTable();
 
     for(var i = 0 ; i < this.getTable().length ; i++)
     {
@@ -197,10 +189,15 @@ module.exports.finished = function(){
             {
                 return winner;
             }
+
+            // If there are free spots
+            if (table[i][j] == '.'){
+                free = true;
+            }
         }
     }
 
-    return false;
+    return (!free) || false;
 };
 
 module.exports.getTable = function(){
