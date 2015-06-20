@@ -147,19 +147,25 @@ module.exports.init = function(n){
     */
 };
 
-module.exports.draw = function(){
+module.exports.draw = function(currentMove){
     var table_html = '';
 
     for(var i = 0 ; i < ConnectFive.table.length ; i++)
     {
         for(var j = 0 ; j < ConnectFive.table.length ; j++)
         {
-            table_html += ConnectFive.table[i][j];
+            table_html += '<span>' + ConnectFive.table[i][j] + '</span>';
         }
         table_html += '<br />';
     }
 
     $('#table').html(table_html);
+    console.log(currentMove);
+    var nth = currentMove[0] * ConnectFive.table.length + currentMove[1];
+    $('#table>span:eq('+ nth +')').css({
+        color: '#f00',
+        fontWeight: 700
+    });
 };
 
 module.exports.setPlayer = function(playerNumber, playerObject){
