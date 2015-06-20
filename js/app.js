@@ -46,11 +46,11 @@ var continueGame = function(){
     connectfive.draw(nextMove);
 
     if (connectfive.finished() === false){
-        setTimeout(continueGame, 1000);
+        setTimeout(continueGame, 10);
     }
     else{
         console.log("Winner " + connectfive.finished());
     }
 };
 
-setTimeout(continueGame, 1000);
+setTimeout(continueGame, 10);
